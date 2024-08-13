@@ -27,7 +27,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CDN - CalcGeo", "CDN - Calc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CDN - Calc Refactor", "CDN - Calc Refactor\CDN - Calc Refactor.csproj", "{79C294D7-1BDB-4B83-9B1C-257DAEACB6D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CDN - Antenas y casas", "CDN - Antenas y casas\CDN - Antenas y casas.csproj", "{401ED819-D4B8-4FBA-984A-79E4A119B42C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CDN - Antenas y casas", "CDN - Antenas y casas\CDN - Antenas y casas.csproj", "{401ED819-D4B8-4FBA-984A-79E4A119B42C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CDN - MadeInTJ", "CDN - MadeInTJ\CDN - MadeInTJ.csproj", "{633B84EB-3432-42B9-A0D2-20F702E1051E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,6 +89,10 @@ Global
 		{401ED819-D4B8-4FBA-984A-79E4A119B42C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{401ED819-D4B8-4FBA-984A-79E4A119B42C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{401ED819-D4B8-4FBA-984A-79E4A119B42C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{633B84EB-3432-42B9-A0D2-20F702E1051E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{633B84EB-3432-42B9-A0D2-20F702E1051E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{633B84EB-3432-42B9-A0D2-20F702E1051E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{633B84EB-3432-42B9-A0D2-20F702E1051E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
