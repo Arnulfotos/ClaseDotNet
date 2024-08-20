@@ -8,25 +8,81 @@ namespace CDN___MadeInTJ
 {
     internal class Hero
     {
-        public int HealthPoints {  get; }
-        public int AttackPoints { get; }
+        public int HealthPoints { get; set; }
+        public int AttackPoints { get; set; }
 
+        public Dictionary<string, bool> Items { get; set; }
+        public int PoisonBag { get; set; }
         public string ID { get; } = "C";
-        public Hero(int HP,int AP)
+
+        public string Action { get; set; }
+        public Hero(int HP, int AP)
         {
             HealthPoints = HP;
             AttackPoints = AP;
-    
+            Items = new Dictionary<string, bool>()
+                {
+                    {"H",false},
+                    {"A",false},
+                    {"W", false},
+
+                };
         }
 
-       
 
-        
-       
+        public string getID()
+        {
+            return ID;
+        }
+
+        public int GetHealth()
+        {
+            return HealthPoints;
+        }
+
+
+        public int GetAttack()
+        {
+            return AttackPoints;
+        }
+
+        public void setHealth(int points, string trough)
+        {
+            if (Items[trough] == false)
+                HealthPoints += points;
+        }
+        public void setAttack(int points)
+        {
+            if (Items["W"] == false)
+                AttackPoints += points;
+        }
+        public void AddPoison()
+        {
+            if (PoisonBag < 5)
+                PoisonBag += 1;
+        }
+        public void UsePoison()
+        {
+            if (PoisonBag != 0)
+                PoisonBag -= 1;
+        }
+
+        public int GetPoisons()
+        {
+            return PoisonBag;
+        }
+
+        public void SetAction(string action)
+        {
+            Action = action;
+        }
 
 
 
-
+        public string GetAction()
+        {
+            return Action;
+        }
 
     }
 }
