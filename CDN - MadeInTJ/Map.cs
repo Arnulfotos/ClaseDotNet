@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CDN___MadeInTJ
 {
-    internal class Map
+    public class Map
     {
         public int N { get; } = 0; // Cuando usar get set;
         public int M { get; } = 0;
@@ -150,6 +150,11 @@ namespace CDN___MadeInTJ
         public string getItems(int col, int row)
         {
             return items[col, row];
+        }
+
+        public void RemoveElement(int col, int row)
+        {
+            items[col, row] = "O";
         }
 
     }

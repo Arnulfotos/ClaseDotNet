@@ -15,9 +15,12 @@ using CDN___MadeInTJ;
                   { "X", "X", "X", "X", "X", "X", "X", "X","X","X" },
 };*/
 Console.Clear();
+System.Console.WriteLine("Ingrese su nombre:");
+string HeroName = Console.ReadLine();
+
+
 var map = new Map(20, 20);
 map.Init();
-
 
 var hero = new Hero(100, 100);
 bool findOut = false;
@@ -31,7 +34,7 @@ map.SetPosition(0, 0, hero.getID());
 
 ConsoleKeyInfo cki;
 Print(map.GetMap());
-
+System.Console.WriteLine("Presione una flecha para moverse");
 do
 {
     cki = Console.ReadKey();
@@ -39,83 +42,25 @@ do
     {
 
         case ConsoleKey.UpArrow:
-
             //map.SetPosition(position[0, 0], position[0, 1], "X");
-            if (position[0, 0] > 0 && map.getItems(position[0, 0] - 1, position[0, 1]) != "L")
+
+            //Existe una posicion position[0, 0] donde x es eje x y y es eje y. Al presionar el arrow, existe una posicion, se verifica que la posicion a la que se quiere llegar no sea pared
+            if (position[0, 0] > 0 && map.getItems(position[0, 0] - 1, position[0, 1]) != "L") // Verificamos que no se este pegando a un limite o que el siguiente elemento hacia Arriba sea una pared
             {
-                string Up = map.getItems(position[0, 0] - 1, position[0, 1]);
-                if (Up == "W")
-                {
-                    hero.setAttack(10);
-                    hero.Items["W"] = true;
-                }
-                if (Up == "A" || Up == "H")
-                {
-                    hero.setHealth(10, Up);
-                    hero.Items[Up] = true;
-                }
-                if (Up == "P")
-                {
-                    hero.AddPoison();
-                }
-                if (Up == "E")
-                {
-                    do
-                    {
-                        Console.Clear();
-
-
-                        System.Console.WriteLine("C VS E");
-
-
-                        System.Console.WriteLine("1. Atacar | 2. Posion | 3. Huir");
-                        int Eleccion = int.Parse(Console.ReadLine());
-
-                        switch (Eleccion)
-                        {
-                            case 1:
-                                System.Console.WriteLine("PUtazos");
-                                break;
-                            case 3:
-                                hero.SetAction("Huir");
-                                break;
-                        }
-                        System.Console.WriteLine(hero.GetAction());
-                        Task.Delay(2000).Wait();
-                    } while (hero.GetAction() != "Huir" && hero.GetHealth() != 0);
-                    position[0, 0] += 1;
-                }
-
+                Actions.EvalActions(hero, map, position, -1, "x");
                 position[0, 0] -= 1;
-
-
             }
-
-
             map.SetPosition(position[0, 0], position[0, 1], hero.getID());
-
             Print(map.GetMap());
 
             break;
+
+
         case ConsoleKey.DownArrow:
             //map.SetPosition(position[0, 0], position[0, 1], "X");
             if (position[0, 0] < map.N - 1 && map.getItems(position[0, 0] + 1, position[0, 1]) != "L")
             {
-                string Down = map.getItems(position[0, 0] + 1, position[0, 1]);
-                if (Down == "W")
-                {
-                    hero.setAttack(10);
-                    hero.Items["W"] = true;
-                }
-                if (Down == "A" || Down == "H")
-                {
-                    hero.setHealth(10, Down);
-                    hero.Items[Down] = true;
-                }
-                if (Down == "P")
-                {
-                    hero.AddPoison();
-                }
+                Actions.EvalActions(hero, map, position, +1, "x");
                 position[0, 0] += 1;
             }
 
@@ -129,21 +74,7 @@ do
             //map.SetPosition(position[0, 0], position[0, 1], "X");
             if (position[0, 1] < map.M - 1 && map.getItems(position[0, 0], position[0, 1] + 1) != "L")
             {
-                string Rigth = map.getItems(position[0, 0], position[0, 1] + 1);
-                if (Rigth == "W")
-                {
-                    hero.setAttack(10);
-                    hero.Items["W"] = true;
-                }
-                if (Rigth == "A" || Rigth == "H")
-                {
-                    hero.setHealth(10, Rigth);
-                    hero.Items[Rigth] = true;
-                }
-                if (Rigth == "P")
-                {
-                    hero.AddPoison();
-                }
+                Actions.EvalActions(hero, map, position, +1, "y");
                 position[0, 1] += 1;
             }
 
@@ -151,26 +82,13 @@ do
 
 
             Print(map.GetMap());
+
             break;
         case ConsoleKey.LeftArrow:
             //map.SetPosition(position[0, 0], position[0, 1], "X");
             if (position[0, 1] > 0 && map.getItems(position[0, 0], position[0, 1] - 1) != "L")
             {
-                string Left = map.getItems(position[0, 0], position[0, 1] - 1);
-                if (Left == "W")
-                {
-                    hero.setAttack(10);
-                    hero.Items["W"] = true;
-                }
-                if (Left == "A" || Left == "H")
-                {
-                    hero.setHealth(10, Left);
-                    hero.Items[Left] = true;
-                }
-                if (Left == "P")
-                {
-                    hero.AddPoison();
-                }
+                Actions.EvalActions(hero, map, position, -1, "y");
                 position[0, 1] -= 1;
             }
 
@@ -183,7 +101,7 @@ do
     }
     //System.Console.WriteLine(map.FindOut());
     // System.Console.WriteLine(map.getItems(position[0, 0], position[0, 1]));
-
+    System.Console.WriteLine($"¸,ø¤º°`°º¤ø,¸¸,ø¤º° {HeroName} °º¤ø,¸¸,ø¤º°`°º¤ø,¸\n");
     System.Console.Write($"Health: {hero.GetHealth()} | Attack: {hero.GetAttack()} | ");
     Console.Write("Posiones: ");
     if (hero.GetPoisons() == 0)
@@ -193,27 +111,33 @@ do
     }
     else
     {
-        for (int i = 1; i <= hero.GetPoisons(); i++)
-        {
+        Console.Write(hero.GetPoisons());
 
-
-            Console.Write("•");
-
-
-        }
     }
 
     System.Console.WriteLine();
 
-    foreach (KeyValuePair<string, bool> item in hero.Items)
+    /*foreach (KeyValuePair<string, bool> item in hero.Items)
     {
         System.Console.WriteLine($"{item.Key}:{item.Value}");
-    }
+    }*/
     findOut = map.FindOut();
 
-} while (cki.Key != ConsoleKey.Escape && !findOut);
+    if (hero.GetHealth() <= 0)
+    {
+        Console.Clear();
+        System.Console.WriteLine("Y O U  D I E D");
+    }
 
-System.Console.WriteLine("Encontraste la salida");
+    if (findOut)
+    {
+        Console.Clear();
+        System.Console.WriteLine("Encontraste la salida");
+    }
+
+} while (cki.Key != ConsoleKey.Escape && !findOut && hero.GetHealth() > 0);
+
+
 
 //Print(map);
 void Print(string[,] array)

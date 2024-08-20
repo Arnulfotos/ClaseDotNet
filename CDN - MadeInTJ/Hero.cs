@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace CDN___MadeInTJ
 {
-    internal class Hero
+    public class Hero
     {
+
         public int HealthPoints { get; set; }
         public int AttackPoints { get; set; }
 
@@ -25,7 +26,6 @@ namespace CDN___MadeInTJ
                     {"H",false},
                     {"A",false},
                     {"W", false},
-
                 };
         }
 
@@ -48,7 +48,7 @@ namespace CDN___MadeInTJ
 
         public void setHealth(int points, string trough)
         {
-            if (Items[trough] == false)
+            if (Items[trough!] == false)
                 HealthPoints += points;
         }
         public void setAttack(int points)
@@ -59,12 +59,19 @@ namespace CDN___MadeInTJ
         public void AddPoison()
         {
             if (PoisonBag < 5)
+            {
                 PoisonBag += 1;
+            }
+
         }
-        public void UsePoison()
+        public void UsePoison(int points)
         {
-            if (PoisonBag != 0)
+            if (PoisonBag > 0)
+            {
                 PoisonBag -= 1;
+                HealthPoints += points;
+            }
+
         }
 
         public int GetPoisons()
@@ -82,6 +89,16 @@ namespace CDN___MadeInTJ
         public string GetAction()
         {
             return Action;
+        }
+
+        public void ClearAction()
+        {
+            Action = "";
+        }
+
+        public void ReciveAttack(int points)
+        {
+            HealthPoints -= points;
         }
 
     }
