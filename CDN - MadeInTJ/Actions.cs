@@ -4,7 +4,7 @@ public static class Actions
 {
 
 
-    public static void EvalActions(Hero hero, Map map, int[,] position, int move, string axis)
+    public static void EvalActions(Hero hero, Map map, int[,] position, int move, string axis, Enemy enemy)
     {
         string nextMov;
 
@@ -72,7 +72,7 @@ public static class Actions
         }
         if (nextMov == "E")
         {
-            var enemy = new Enemy();
+
             do
             {
 
@@ -120,6 +120,7 @@ public static class Actions
                         break;
                     case 2:
                         hero.UsePoison(Items.GetPosion());
+                        hero.ReciveAttack(enemy.GetAttack());
                         break;
                     case 3:
                         hero.SetAction("Huir");

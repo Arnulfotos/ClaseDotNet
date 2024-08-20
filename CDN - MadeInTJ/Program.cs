@@ -18,7 +18,7 @@ Console.Clear();
 System.Console.WriteLine("Ingrese su nombre:");
 string HeroName = Console.ReadLine();
 
-
+var enemy = new Enemy();
 var map = new Map(20, 20);
 map.Init();
 
@@ -47,7 +47,7 @@ do
             //Existe una posicion position[0, 0] donde x es eje x y y es eje y. Al presionar el arrow, existe una posicion, se verifica que la posicion a la que se quiere llegar no sea pared
             if (position[0, 0] > 0 && map.getItems(position[0, 0] - 1, position[0, 1]) != "L") // Verificamos que no se este pegando a un limite o que el siguiente elemento hacia Arriba sea una pared
             {
-                Actions.EvalActions(hero, map, position, -1, "x");
+                Actions.EvalActions(hero, map, position, -1, "x", enemy);
                 position[0, 0] -= 1;
             }
             map.SetPosition(position[0, 0], position[0, 1], hero.getID());
@@ -60,7 +60,7 @@ do
             //map.SetPosition(position[0, 0], position[0, 1], "X");
             if (position[0, 0] < map.N - 1 && map.getItems(position[0, 0] + 1, position[0, 1]) != "L")
             {
-                Actions.EvalActions(hero, map, position, +1, "x");
+                Actions.EvalActions(hero, map, position, +1, "x", enemy);
                 position[0, 0] += 1;
             }
 
@@ -74,7 +74,7 @@ do
             //map.SetPosition(position[0, 0], position[0, 1], "X");
             if (position[0, 1] < map.M - 1 && map.getItems(position[0, 0], position[0, 1] + 1) != "L")
             {
-                Actions.EvalActions(hero, map, position, +1, "y");
+                Actions.EvalActions(hero, map, position, +1, "y", enemy);
                 position[0, 1] += 1;
             }
 
@@ -88,7 +88,7 @@ do
             //map.SetPosition(position[0, 0], position[0, 1], "X");
             if (position[0, 1] > 0 && map.getItems(position[0, 0], position[0, 1] - 1) != "L")
             {
-                Actions.EvalActions(hero, map, position, -1, "y");
+                Actions.EvalActions(hero, map, position, -1, "y", enemy);
                 position[0, 1] -= 1;
             }
 

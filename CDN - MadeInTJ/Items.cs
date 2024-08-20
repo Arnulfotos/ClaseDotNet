@@ -17,7 +17,7 @@ namespace CDN___MadeInTJ
         }
         public static int GetPosion()
         {
-            return rand.Next(10, 101);
+            return rand.Next(50, 201);
         }
 
     }
